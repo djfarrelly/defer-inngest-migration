@@ -1,11 +1,10 @@
-import { sleep } from "@/utils/sleep";
-import { defer } from "@defer/client";
+import { performLongRunningTask } from '@/utils/performLongRunningTask';
+import { defer } from '@defer/client';
 
-async function fifoTask() {
-  console.log("I am processed in sequence, by calling order");
-  await sleep(); // sleep for 1 sec
+async function fifoTask({ userId }: { userId: string }) {
+  return { success: true, userId };
 }
 
 export default defer(fifoTask, {
-  concurrency: 1, // we want this function to run in sequence and avoid overlaps
+  concurrency: 1, // one at a time!
 });

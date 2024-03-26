@@ -1,8 +1,8 @@
-"use client";
-import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
-import { ListExecutionsResult } from "@defer/client/typings/backend";
-import { differenceInSeconds, format, parseISO } from "date-fns";
+'use client';
+import { useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
+import { ListExecutionsResult } from '@defer/client/typings/backend';
+import { differenceInSeconds, format, parseISO } from 'date-fns';
 
 import {
   listTasks,
@@ -10,13 +10,15 @@ import {
   runLongRunningTask,
   runManyFIFOTasks,
   runCron,
-} from "./actions/actions";
-import { stateToColor, stateToText } from "../utils/executionStateHelpers";
+} from './actions/actions';
+import { stateToColor, stateToText } from '../utils/executionStateHelpers';
 
-import logo from "./logo.png";
+import logo from './logo.png';
 
 export default function Index() {
   const [tasks, updateTasks] = useState<ListExecutionsResult | undefined>();
+  // const [inngestEvents, updateInngestEvents] = useState<ListExecutionsResult | undefined>();
+  // const [inngestRuns, updateInngestRuns] = useState<ListExecutionsResult | undefined>();
 
   useEffect(() => {
     const interval = setInterval(
@@ -43,7 +45,7 @@ export default function Index() {
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-          <Image src={logo} alt={"Defer"} className="flex-1 max-w-24" />
+          <Image src={logo} alt={'Defer'} className="flex-1 max-w-24" />
           <a
             className="py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
             href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdefer-run%2Fdefer.demo%2Ftree%2Fmaster%2Fnextjs%2Fapp-template%2F&project-name=nextjs-with-defer&repository-name=nextjs-with-defer&demo-title=nextjs-with-defer&demo-description=Perform%20long-running%20tasks,%20workflows%20and%20CRONs%20within%20your%20Next.js%20application.&demo-url=https%3A%2F%2Fdemo-nextjs-with-defer.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fdefer-run%2Fdefer.demo%2Ftree%2Fmaster%2Fnextjs%2Fapp-template%2F&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2Fdefer-run%2Fdefer.demo%2Fmaster%2Fnextjs%2Fapp-template%2Fapp%2Fog_image.png&integration-ids="
@@ -89,7 +91,7 @@ export default function Index() {
           <div className="py-2 px-3 rounded-md border flex gap-6 flex-col">
             <div className="flex-1">
               <h2>
-                <code>fifoTask()</code>
+                <code>parallelTasks()</code>
               </h2>
               <p>
                 <em>Runs for 1 second with a max concurrency of 1.</em>
@@ -123,7 +125,7 @@ export default function Index() {
             </div>
           </div>
         </main>
-        <div>
+        {/* <div>
           <div className="border px-2 py-2 rounded-md">
             <table className="border-collapse w-full">
               <thead>
@@ -204,11 +206,12 @@ export default function Index() {
             </table>
           </div>
         </div>
+              */}
       </div>
 
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
-          Explore the{" "}
+          Explore the{' '}
           <a
             href="https://www.defer.run/docs/introduction"
             target="_blank"

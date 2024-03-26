@@ -1,9 +1,10 @@
-import { performLongRunningTask } from "@/utils/performLongRunningTask";
-import { defer } from "@defer/client";
+import { performLongRunningTask } from '@/utils/performLongRunningTask';
+import { defer } from '@defer/client';
 
-async function longRunningTask() {
+async function longRunningTask({ message }: { message: string }) {
   // runs a fake task for 30s
   await performLongRunningTask();
+  return { success: true, message };
 }
 
 export default defer(longRunningTask, {
